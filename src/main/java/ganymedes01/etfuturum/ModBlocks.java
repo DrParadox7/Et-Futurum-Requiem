@@ -280,6 +280,22 @@ public enum ModBlocks {
 	public static final Block[] beds = new Block[] {WHITE_BED.get(), ORANGE_BED.get(), MAGENTA_BED.get(), LIGHT_BLUE_BED.get(), YELLOW_BED.get(), LIME_BED.get(), PINK_BED.get(), GRAY_BED.get(),
 			LIGHT_GRAY_BED.get(), CYAN_BED.get(), PURPLE_BED.get(), BLUE_BED.get(), BROWN_BED.get(), GREEN_BED.get(), BLACK_BED.get()};
 
+	/*
+	 * Stand-in static final fields because some mods incorrectly referenced my code directly.
+	 * They should be using GameRegistry.findBlock but it is what it is I guess.
+	 */
+
+	//Immersive Cavegen
+	@Deprecated public static final Block deepslate = DEEPSLATE.get();
+
+	//D-Mod
+	@Deprecated public static final Block sweet_berry_bush = SWEET_BERRY_BUSH.get();
+
+	//WTF Cave Biomes
+	@Deprecated public static final Block prismarine = PRISMARINE_BLOCK.get();
+	@Deprecated public static final Block sea_lantern = SEA_LANTERN.get();
+	@Deprecated public static final Block red_sandstone = RED_SANDSTONE.get();
+
 	public static void init() {
 		for(ModBlocks block : values()) {
 			if(block.get() instanceof IConfigurable && !((IConfigurable)block.get()).isEnabled()) continue;

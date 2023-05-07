@@ -79,6 +79,14 @@ public enum ModItems {
 	public static final Item[] boats = new Item[] {OAK_BOAT.get(), SPRUCE_BOAT.get(), BIRCH_BOAT.get(), JUNGLE_BOAT.get(), ACACIA_BOAT.get(), DARK_OAK_BOAT.get()};
 	public static final Item[] chest_boats = new Item[] {OAK_BOAT.get(), SPRUCE_CHEST_BOAT.get(), BIRCH_CHEST_BOAT.get(), JUNGLE_CHEST_BOAT.get(), ACACIA_CHEST_BOAT.get(), DARK_OAK_CHEST_BOAT.get()};
 
+	/*
+	 * Stand-in static final fields because some mods incorrectly referenced my code directly.
+	 * They should be using GameRegistry.findItem but it is what it is I guess.
+	 */
+
+	//D-Mod
+	@Deprecated public static final Item sweet_berries = SWEET_BERRIES.get();
+
 	public static void init() {
 		for(ModItems item : values()) {
 			if(item.isEnabled()) { //Honestly what do you think it's doing lmfao
