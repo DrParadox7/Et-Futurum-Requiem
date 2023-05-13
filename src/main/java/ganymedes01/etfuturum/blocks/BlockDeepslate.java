@@ -1,10 +1,8 @@
 package ganymedes01.etfuturum.blocks;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import cpw.mods.fml.relauncher.Side;
@@ -78,22 +76,8 @@ public class BlockDeepslate extends BlockRotatedPillar implements IConfigurable 
 	
 	public static void doDeepslateRedoCheck(World world, int x, int y, int z) {
 		if(!EtFuturumLateWorldGenerator.stopRecording && !world.getChunkFromBlockCoords(x, z).sendUpdates) {
-			Map<Long, Set<Integer>> map;
-			if(!EtFuturumLateWorldGenerator.deepslateRedoCache.containsKey(world.provider.dimensionId)) {
-				EtFuturumLateWorldGenerator.deepslateRedoCache.put(world.provider.dimensionId, map = Maps.newConcurrentMap());
-			} else {
-				map = EtFuturumLateWorldGenerator.deepslateRedoCache.get(world.provider.dimensionId);
-			}
-
-			long coords = ChunkCoordIntPair.chunkXZ2Int(x >> 4, z >> 4);
-			
-			Set<Integer> posSet;
-			if(!map.containsKey(coords)) {
-				map.put(coords, posSet = new HashSet());
-			} else {
-				posSet = map.get(coords);
-			}
-			
+			Map<Long, List<Integer>> map = EtFuturumLateWorldGenerator.deepslateRedoCache.computeIfAbsent(world.provider.dimensionId, k -> Maps.newConcurrentMap());
+			List<Integer> posSet = map.computeIfAbsent(ChunkCoordIntPair.chunkXZ2Int(x >> 4, z >> 4), k -> Lists.newLinkedList());
 			posSet.add((int)((x & 0xF) << 12 | (y & 0xFF) << 4 | (z & 0xF)));
 		}
 	}

@@ -1,10 +1,7 @@
 package ganymedes01.etfuturum.world;
 
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Random;
-import java.util.Set;
 
 import ganymedes01.etfuturum.ModBlocks;
 import org.apache.commons.lang3.ArrayUtils;
@@ -28,7 +25,7 @@ import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
 public class EtFuturumLateWorldGenerator extends EtFuturumWorldGenerator {
 	
 	public static final EtFuturumLateWorldGenerator INSTANCE = new EtFuturumLateWorldGenerator();
-	public static final Map<Integer, Map<Long, Set<Integer>>> deepslateRedoCache = Maps.newConcurrentMap();
+	public static final Map<Integer, Map<Long, List<Integer>>> deepslateRedoCache = Maps.newConcurrentMap();
 
 	@Override
 	public void generate(Random rand, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
@@ -45,12 +42,12 @@ public class EtFuturumLateWorldGenerator extends EtFuturumWorldGenerator {
 		if(doesChunkSupportLayerDeepslate(world.getWorldInfo().getTerrainType(), world.provider.dimensionId)) {
 			//Turn off recording here so the world gen isn't an infinite recursion loop of constantly checking the same blocks
 			stopRecording = true;
-			Map<Long, Set<Integer>> map = deepslateRedoCache.get(world.provider.dimensionId);
+			Map<Long, List<Integer>> map = deepslateRedoCache.get(world.provider.dimensionId);
 			if(map != null) {
-				Iterator<Entry<Long, Set<Integer>>> mapIterator = map.entrySet().iterator();
+				Iterator<Entry<Long, List<Integer>>> mapIterator = map.entrySet().iterator();
 				while(mapIterator.hasNext()) {
-					Entry<Long, Set<Integer>> set = mapIterator.next();
-					Set<Integer> posSet = set.getValue();
+					Entry<Long, List<Integer>> set = mapIterator.next();
+					List<Integer> posSet = set.getValue();
 					
 					if(posSet != null) {
 						
