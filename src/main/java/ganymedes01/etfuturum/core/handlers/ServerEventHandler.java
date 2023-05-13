@@ -1480,6 +1480,7 @@ public class ServerEventHandler {
 				int amount = MathHelper.floor_float(Math.min(event.entityLiving.getHealth(), event.ammount) / 2F);
 				amount = (int) applyArmorCalculations(event.entityLiving, event.source, amount);
 				amount = (int) applyPotionDamageCalculations(event.entityLiving, event.source, amount);
+				amount = Math.min(amount, 25);
 				if(amount > 0) {
 					EntityDamageSource src = (EntityDamageSource) event.source;
 					Entity attacker = src.getSourceOfDamage();
