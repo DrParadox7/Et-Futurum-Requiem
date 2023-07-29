@@ -37,7 +37,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 // SEMVER that gradle uses.
 group = "ganymedes01.etfuturum"
 archivesBaseName = "Et_Futurum_Requiem"
-def modVersion = "2.4.6"
+def modVersion = "2.4.7-LE"
 version = project.hasProperty("useCommitHashInVersion") ? getCommitVersion(modVersion) : modVersion
 
 def buildAll = project.hasProperty("all")
@@ -113,7 +113,7 @@ dependencies {
 		transitive = false
 	}
 	
-	shadow('com.github.makamys:MCLib:0.3.7.4') {
+	shadow('com.github.makamys:MCLib:0.3.7.5') {
 		exclude group: "codechicken"
 	}
 }
