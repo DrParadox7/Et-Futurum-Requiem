@@ -98,7 +98,7 @@ public class CompostingRegistry {
 	 */
 	public static void registerCompostable(Object itemObj, int percent) {
 		if (percent <= 0 || percent > 600) {
-			throw new IllegalArgumentException("Tried to add a composter entry with percent value " + percent + " which is not allowed, should be above 0 and equal to or below 100!");
+			throw new IllegalArgumentException("Tried to add a composter entry with percent value " + percent + " which is not allowed, should be above 0 and equal to or below 600!");
 		}
 		if (itemObj instanceof ItemStack) {
 			COMPOSTING_REGISTRY.put(((ItemStack) itemObj).copy(), percent);

@@ -313,6 +313,18 @@ public class EtFuturum {
 			((ItemFood) Items.baked_potato).healAmount = 5;
 		}
 
+		/*Validate registry entries*/
+		for (ItemStack stack : CompostingRegistry.getComposts().keySet()) {
+			if (stack.getItem() == null || Item.itemRegistry.getNameForObject(stack.getItem()) == null) {
+				CompostingRegistry.remove(stack);
+			}
+		}
+		for (ItemStack stack : EnchantingFuelRegistry.getFuels().keySet()) {
+			if (stack.getItem() == null || Item.itemRegistry.getNameForObject(stack.getItem()) == null) {
+				EnchantingFuelRegistry.remove(stack);
+			}
+		}
+
 		if (ConfigFunctions.enableUpdatedHarvestLevels) {
 			Blocks.packed_ice.setHarvestLevel("pickaxe", 0);
 			Blocks.ladder.setHarvestLevel("axe", 0);

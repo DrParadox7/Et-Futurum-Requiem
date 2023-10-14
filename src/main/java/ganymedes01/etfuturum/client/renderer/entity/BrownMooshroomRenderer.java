@@ -12,7 +12,6 @@ import org.lwjgl.opengl.GL11;
 public class BrownMooshroomRenderer extends RenderMooshroom {
 	public BrownMooshroomRenderer() {
 		super(new ModelCow(), 0.7F);
-		// TODO Auto-generated constructor stub
 	}
 
 	private static final ResourceLocation mooshroomTextures = new ResourceLocation("textures/entity/cow/brown_mooshroom.png");
