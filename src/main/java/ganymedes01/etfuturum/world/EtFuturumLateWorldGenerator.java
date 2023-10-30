@@ -48,7 +48,7 @@ public class EtFuturumLateWorldGenerator extends EtFuturumWorldGenerator {
 		Chunk chunk = null;
 		IChunkProvider provider = world.getChunkProvider() instanceof ChunkProviderServer ? ((ChunkProviderServer) world.getChunkProvider()).currentChunkProvider : world.getChunkProvider();
 		//Used to check if we're generating in a flat world
-		if (doesChunkSupportLayerDeepslate(world.getChunkProvider() instanceof ChunkProviderServer ? ((ChunkProviderServer) world.getChunkProvider()).currentChunkProvider : world.getChunkProvider(), world.provider.dimensionId)) {
+		if (doesChunkSupportLayerDeepslate(provider, world.provider.dimensionId)) {
 			//Turn off recording here so the world gen isn't an infinite recursion loop of constantly checking the same blocks
 			stopRecording = true;
 			Map<Long, List<Integer>> map = deepslateRedoCache.remove(world.provider.dimensionId);
@@ -171,7 +171,7 @@ public class EtFuturumLateWorldGenerator extends EtFuturumWorldGenerator {
 	private boolean doesChunkSupportLayerDeepslate(IChunkProvider provider, int dimId) {
 		if (ModBlocks.DEEPSLATE.isEnabled()) {
 			if (ConfigWorld.deepslateGenerationMode == 0 && ConfigWorld.deepslateMaxY > 0) {
-				return !(provider instanceof ChunkProviderFlat) && ArrayUtils.contains(ConfigWorld.deepslateLayerDimensionBlacklist, dimId) == ConfigWorld.deepslateLayerDimensionBlacklistAsWhitelist;
+				return (provider.getClass().getName().equals("com.rwtema.extrautils.worldgen.Underdark.ChunkProviderUnderdark") || !(provider instanceof ChunkProviderFlat)) && ArrayUtils.contains(ConfigWorld.deepslateLayerDimensionBlacklist, dimId) == ConfigWorld.deepslateLayerDimensionBlacklistAsWhitelist;
 			}
 		}
 		return false;

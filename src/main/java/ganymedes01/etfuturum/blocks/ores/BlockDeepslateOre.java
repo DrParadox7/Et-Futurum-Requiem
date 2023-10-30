@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import ganymedes01.etfuturum.EtFuturum;
 import ganymedes01.etfuturum.api.DeepslateOreRegistry;
 import ganymedes01.etfuturum.client.sound.ModSounds;
+import ganymedes01.etfuturum.configuration.configs.ConfigBlocksItems;
 import ganymedes01.etfuturum.configuration.configs.ConfigSounds;
 import ganymedes01.etfuturum.core.utils.Utils;
 import net.minecraft.block.Block;
@@ -39,7 +40,7 @@ public class BlockDeepslateOre extends BlockOre {
 			setBlockTextureName("deepslate_" + block.textureName);
 			setCreativeTab(EtFuturum.creativeTabBlocks);
 		}
-		if (defaultMapping) {
+		if (defaultMapping && ConfigBlocksItems.enableDeepslateOres) {
 			addDeepslateMappings();
 		}
 	}
