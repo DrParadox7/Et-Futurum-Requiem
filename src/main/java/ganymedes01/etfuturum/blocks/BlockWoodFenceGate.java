@@ -11,6 +11,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import java.util.Locale;
+
 public class BlockWoodFenceGate extends BlockFenceGate {
 
 	private final int meta;
@@ -20,7 +22,7 @@ public class BlockWoodFenceGate extends BlockFenceGate {
 		setHardness(2.0F);
 		setResistance(5.0F);
 		setStepSound(soundTypeWood);
-		setBlockName(Utils.getUnlocalisedName("fence_gate_" + BlockWoodDoor.names[meta]));
+		setBlockName(Utils.getUnlocalisedName("fence_gate_" + BlockWoodDoor.names[meta].toLowerCase(Locale.ENGLISH)));
 		setCreativeTab(EtFuturum.creativeTabBlocks);
 	}
 
